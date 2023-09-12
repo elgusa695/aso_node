@@ -18,6 +18,7 @@ let info = {
     puser: '',
     ccajero: '',
     cavances: '',
+    cdin: '',
     email: '',
     pemail: '',
     cel: '',

