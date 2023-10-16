@@ -1,8 +1,8 @@
 /**
  * CONFIGURACION 
  */
-    const API_URL = 'http://127.0.0.1:8080'; // API.
-    const DATA_URL = 'http://127.0.0.1:3000'; // DATOS REGS.
+    const API_URL = 'https://500a-152-202-153-158.ngrok.io'; // API.
+    const DATA_URL = 'https://b9df-152-202-153-158.ngrok.io'; // DATOS REGS.
 
 
 
