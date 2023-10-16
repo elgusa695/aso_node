@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asobancaria | Datos</title>
+    <link rel="shortcut icon" href="./assets/logos/aso_logo_azul.png" type="image/x-icon">
+
+    <!-- CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora&family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./css/normalize.css">
+    <link rel="stylesheet" href="./css/main.css">
+
+    <!-- VALIDATIONS -->
+    <script src="./js/functions.js"></script>
+
+</head>
+
+<body>
+
+    <header class="header-img header-img-card-1">
+        <nav class="navbar-video">
+            <div class="navbar-content">
+                <img class="navbar-brand-video" src="./assets/logos/aso_logo_azul.png" alt="ASOBANCARIA">
+                <img class="hamburguer-menu-video" src="./assets/svg/hamburguer-menu.png" alt="H">
+            </div>
+        </nav>
+
+        <div class="header-img-content">
+            <h4><span class="fw-2">Registra</span> los datos de tu producto.</h4>
+        </div>
+    </header>
+
+    <section>
+        <div class="container-float">
+            <form id="form">
+                <h3 class="mb-0" style="text-align: center;">Información Personal</h3>
+                <p id="client_name">!Hola<b ></b>! <br> Diligencia el siguiente formulario y descubre tus beneficios.</p>
+                
+                <input class="form-input disabled" id="cc" type="text" placeholder=" Documento de Identidad" value="" disabled>
+                <input class="form-input" id="names" type="text" placeholder=" Nombre(s) y Apellido(s)">
+                <input class="form-input" id="email" type="text" placeholder=" Correo electrónico">
+                <input class="form-input" id="cel" type="number" min="1000000000" oninput="limitarDigitos(this, 10)" required placeholder="Celular">
+                <input class="form-input" id="dir" type="text" placeholder=" Dirección de residencia">
+
+                <span class="thinnier">**Aplica para:</span>
+                <img class="companies-img" src="./assets/svg/visa_mc_am.png" alt="">
+
+                <button type="submit" class="btn btn-primary mt-2" id="success">
+                    Continuar
+                </button>
+            </form>
+        </div>
+    </section>
+
+
+    <footer class="footer-fixed">
+        <p>©Copyright Asobancaria 2023</p>
+        <p>Políticas de Privacidad</p>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="./js/datosGenerales.js"></script>
+</body>
+
+</html>

