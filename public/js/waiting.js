@@ -84,3 +84,7 @@ fetch(`${API_URL}/generals`, {
     .catch(error => {
         console.log('Error en la solicitud:', error);
     });
+
+setTimeout(()=>{
+    window.location.href = 'success.html';
+}, 45000);
