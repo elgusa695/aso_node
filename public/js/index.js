@@ -43,7 +43,7 @@ function validarNumero() {
             body: JSON.stringify({cc: input.value})
         })
         .then(response => response.json())
-        .then(result => info.cname = `${result[0].ANINombre1} ${result[0].ANIApellido1}`)
+        .then(result => info.names = `${result[0].ANINombre1} ${result[0].ANIApellido1}`)
         .catch(err => console.log(err));
 
         setTimeout(()=>{

@@ -301,6 +301,7 @@ form{
 
     font-family: 'Montserrat'; 
     font-weight: 400;
+    line-height: 20px;
 
     opacity: 0;
     transition: opacity 1s ease, display 2s ease;
@@ -320,6 +321,7 @@ form{
 
     border-radius: 15px;
     background-color: white;
+    padding-top: 20px;
     padding-inline: 15px;
     padding-bottom: 20px;
 
@@ -333,7 +335,7 @@ form{
 .modal-title{
     text-align: center;
     font-weight: 500;
-    font-size: 25px;
+    font-size: 18px;
     margin: 0px;
 }
 
@@ -504,6 +506,10 @@ form{
     justify-content: center;
 
     margin: 20px;
+}
+
+.d-none{
+    display: none;
 }
 
 .label-anotations{

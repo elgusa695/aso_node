@@ -46,6 +46,7 @@ function showSpinner() {
     try {
         // Crear el contenedor del spinner
         let spinnerContainer = document.createElement('div');
+        spinnerContainer.setAttribute('id', 'modal-spinner');
         spinnerContainer.classList.add('modal', 'd-block');
         spinnerContainer.id = 'modal-esperar';
 
