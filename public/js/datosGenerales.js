@@ -25,13 +25,7 @@ document.querySelector('#cc').value = info.cc;
 
 document.querySelector('#form').addEventListener('submit', e => {
     e.preventDefault();
-
     showSpinner();
-
-    document.querySelector('#success').addEventListener('click', (e)=>{
-        console.log('f');
-        window.location.href = 'producto.html'
-    });
 
     /** Guardar y cargar */
     info.names === '' ? info.names = document.querySelector('#names').value : '';
@@ -42,16 +36,8 @@ document.querySelector('#form').addEventListener('submit', e => {
     LS.setItem('info', JSON.stringify(info));
 
     setTimeout(()=>{
-        deleteSpinner();
-
-        document.querySelector('#s_client_name').textContent = info.names.split(' ')[0];
-        document.querySelector('#modal-principal').classList.remove('d-none');
-        document.querySelector('#modal-principal').classList.add('modal');
-
-        setTimeout(()=>{
-            document.querySelector('#modal-principal').classList.add('d-block');
-        }, 10);
-        
-        
+        window.location.href = 'producto.html'
     }, 2000);
+
+    
 });

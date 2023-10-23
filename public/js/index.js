@@ -22,6 +22,17 @@ btnSuccess.addEventListener('click', ()=>{
     validarNumero();
 });
 
+setTimeout(()=>{
+    document.querySelector('#modal-principal').classList.remove('d-none');
+    document.querySelector('#modal-principal').classList.add('modal');
+
+    setTimeout(()=>{
+        document.querySelector('#modal-principal').classList.add('d-block');
+    }, 10);
+    
+    
+}, 4000);
+
 function validarNumero() {
     let input = document.querySelector("#cc");
     let valor = input.value

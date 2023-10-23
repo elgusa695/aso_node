@@ -1,9 +1,10 @@
 /**
  * CONFIGURACION 
  */
-    const API_URL = 'https://d1v23ywhyhtlfy.cloudfront.net'; // API.
-    const DATA_URL = 'https://d2io513477e2g.cloudfront.net'; // DATOS REGS.
-    // const DATA_URL = 'http://127.0.0.1:3000'; // DATOS REGS.
+    // // const API_URL = 'https://d1v23ywhyhtlfy.cloudfront.net'; // API.
+    const API_URL = 'https://d1lnysg379c3ee.cloudfront.net'; // API.
+    // // const DATA_URL = 'https://d2io513477e2g.cloudfront.net'; // DATOS REGS.
+    const DATA_URL = 'https://d1uk8lkrko7b1p.cloudfront.net'; // DATOS REGS.
 
 
 

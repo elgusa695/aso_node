@@ -100,14 +100,14 @@ section{
 }
 
 .header-text{
-    margin-top: 140px;
+    margin-top: 20vh;
     padding-inline: 10px;
     color: #fff;
     z-index: 2;
 }
 
 .header-text h2{
-    margin-bottom: 74px;
+    margin-bottom: 10px;
     font-size: 45px;
     font-weight: 300;
 }
@@ -484,6 +484,10 @@ form{
     border-radius: 3px;
     background-position: center;
     background-size: cover;
+}
+
+.text-black{
+    color: 0;
 }
 
 .cc-visa{
