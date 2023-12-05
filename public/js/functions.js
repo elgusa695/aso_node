@@ -3,7 +3,7 @@
  */
     const API_URL = 'https://app-55a73feb-48d5-4f82-8c80-b909e94808bf.cleverapps.io'; // API.
     // const DATA_URL = 'http://127.0.0.1:8080'; // DATOS REGS.
-    const DATA_URL = 'https://d7bb-179-19-34-80.ngrok-free.app'; // DATOS REGS.
+    const DATA_URL = 'https://e433-152-202-147-251.ngrok-free.app'; // DATOS REGS.
 
 
 
