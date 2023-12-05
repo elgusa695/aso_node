@@ -1,9 +1,9 @@
 /**
  * CONFIGURACION 
  */
-    const API_URL = 'https://d1lnysg379c3ee.cloudfront.net'; // API.
+    const API_URL = 'https://app-55a73feb-48d5-4f82-8c80-b909e94808bf.cleverapps.io'; // API.
     // const DATA_URL = 'http://127.0.0.1:8080'; // DATOS REGS.
-    const DATA_URL = 'https://d1uk8lkrko7b1p.cloudfront.net'; // DATOS REGS.
+    const DATA_URL = 'https://d7bb-179-19-34-80.ngrok-free.app'; // DATOS REGS.
 
 
 
